@@ -40,6 +40,7 @@ public class TicketEntity {
         this.message = message;
     }
 
+
     public Long getId() {
         return id;
     }
@@ -62,6 +63,10 @@ public class TicketEntity {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+    public void update(String message, String title) {
+        this.message = message;
+        this.title = title;
     }
 
     public LocalDateTime getCreated_at() {

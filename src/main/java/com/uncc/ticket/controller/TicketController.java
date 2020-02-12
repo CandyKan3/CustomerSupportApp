@@ -52,13 +52,30 @@ public class TicketController {
 
     @RequestMapping(value = "/tickets/edit/{id}", method = RequestMethod.GET)
     public String editTicket(Model model,@PathVariable("id") Long id) {
-        // Code here
-        return "redirect:/"; //Remove this line
+    Long id2 = id;
+    //TicketEntity ticket2=  new TicketEntity();
+    model.addAttribute("ticket", ticketService.findById(id));
+        return "tickets/storeTicket";
+
+
     }
+    /*
+    @RequestMapping(value = "/tickets/updateTicket", method = RequestMethod.POST)
+    public String storeUpdateTicket(Model model,@ModelAttribute(name = "ticket") @Valid TicketEntity ticket, BindingResult bindingResult,Principal principal) {
+        if (bindingResult.hasErrors()) {
+            return "tickets/updateTicket";
+        };
+        //tring title, Long id, UsersEntity users, String message)
+       // model.addAttribute("ticket", new TicketEntity(ticket.getTitle(), ticket.getId(), ticket.));
+        System.out.println(ticket.getId());
+        ticketService.storeTicket(ticket);
+        return "redirect:/";
+    }
+*/
 
     @RequestMapping(value = "/tickets/delete/{id}", method = RequestMethod.GET)
     public String deleteTicket(@PathVariable("id") Long id) {
-        // Code here
+        ticketService.deleteById(id);
         return "redirect:/";
     }
 
